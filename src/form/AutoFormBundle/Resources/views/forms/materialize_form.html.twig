@@ -1,7 +1,20 @@
-<form {% for attr,value in form.attr %} {{ attr }}="{{ value }}"{% endfor %}>
+<form {% for attr,value in form.attr %} {{ attr }}="{{ value }}" {% endfor %}>
     {% for content in form.contents  %}
-        <div {% for arrt,value in contetn.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+        <div {% for arrt,value in content.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+            {% for field in content.fields %}
+                <div {% for attr,value in field.div %} {{ attr }}="{{ value }}" {% endfor %}>
+                    {% if field.attr.type == "radio" or field.attr.type == "checkbox" %}<p>{% endif %}
+                        {% if field.icon %}<i {% for attr,value in field.icon.attr %} {{ attr }}="{{ value }}" {% endfor %}>{% if field.icon.name %}{{ field.icon.name }}{% endif %}</i>{% endif %}
+                        {% if field.attr.type %}
+                            <input {% for attr,value  in field.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+                        {% endif %}
+                        {% if field.attr. %}
 
+                        {% endif %}
+                        {% if field.label %}<label {% for attr,value in label.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ field.title }}</label>{% endif %}
+                    {% if field.attr.type == "radio" or field.attr.type == "checkbox" %}</p>{% endif %}
+                </div>
+            {% endfor %}
         </div>
     {% endfor %}
 </form>

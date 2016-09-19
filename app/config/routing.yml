@@ -1,3 +1,7 @@
+auto_form:
+    resource: "@AutoFormBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

@@ -1,0 +1,3 @@
+auto_form_homepage:
+    path:     /auto-form
+    defaults: { _controller: AutoFormBundle:Default:index }

@@ -3,13 +3,27 @@
         <div {% for arrt,value in content.attr %} {{ attr }}="{{ value }}" {% endfor %}>
             {% for field in content.fields %}
                 <div {% for attr,value in field.div %} {{ attr }}="{{ value }}" {% endfor %}>
-                    {% if field.attr.type == "radio" or field.attr.type == "checkbox" %}<p>{% endif %}
+                    {% if field.attr.type == "radio" or field.attr.type == "checkbox" or field.attr.type == "range" %}<p {% if field.attr.type == "range" %}class="range-field"{% endif %}>{% endif %}
                         {% if field.icon %}<i {% for attr,value in field.icon.attr %} {{ attr }}="{{ value }}" {% endfor %}>{% if field.icon.name %}{{ field.icon.name }}{% endif %}</i>{% endif %}
+                        {% if field.div.attr == "switch" %}<label> {{ field.flag.0 }}{% endif %}
+                        {% if field.div.attr == "switch" or field.attr.type == "file" %}<span {% if field.div.attr == "switch" %}class="lever"{% endif %}>{% if field.attr.type == "file" %}{{ field.btn.title }}{% endif %}</span>{% endif %}
                         {% if field.attr.type %}
-                            <input {% for attr,value  in field.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+                            <input {% for attr,value  in field.attr %} {{ attr }}="{{ value }}" {% endfor %} {% if field.div.attr == "switch" %} {% if field.div.disabled %} disabled {% endif %}{% endif %}{% if field.multiple %} multiple {% endif %}>
                         {% endif %}
-                        {% if field.attr. %}
-
+                        {% if field.div.attr == "switch" %} {{ field.flag.1 }} </label>{% endif %}
+                        {% if field.select %}
+                            <select {% for attr,value in select.attr %} {{ attr }}="{{ value }}" {% endfor %}{% if select.multiple %} multiple {% endif %}{% if select.disabled %} disabled {% endif %}>
+                                {% for optgroup in select.optgroup %}
+                                    {% if optgroup.label %}<optgroup label="{{ optgroup.label }}" {% for attr,value in optgroup.attr%} {{ attr }}="{{ value }}" {% endfor %}>{% endif %}
+                                    {% for option in optgroup.options %}
+                                        <option {% for attr,value in option.attr %} {{ attr }}="{{ value }}" {% endfor %}{% if option.disabled %} disabled {% endif %}{% if opition.selected %} selected {% endif %}>{{ opition.name }}</option>
+                                    {% endfor %}
+                                    {% if optgroup.label %}</optgroup>{% endif %}
+                                {% endfor %}
+                            </select>
+                        {% endif %}
+                        {% if field.textarea %}
+                            <textarea {% for attr,value in field.textarea.attr %} {{ attr }}="{{ value }}" {% endfor %}></textarea>
                         {% endif %}
                         {% if field.label %}<label {% for attr,value in label.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ field.title }}</label>{% endif %}
                     {% if field.attr.type == "radio" or field.attr.type == "checkbox" %}</p>{% endif %}

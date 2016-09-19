@@ -1,9 +1,12 @@
 <form {% for attr,value in form.attr %} {{ attr }}="{{ value }}" {% endfor %}>
     {% if form.title %}
         {% if form.title.row %}<div {% for attr,value in form.title.row %}{{ attr }}="{{ value }}"{% endfor %}>{% endif %}
-            <div>
-                <h1></h1>
-            </div>
+            {% if form.title.column %}<div {% for attr,value in form.title.column %} {{ attr }}="{{ value }}"{% endfor %}>{% endif %}
+                <h1>{{ form.title.title }}</h1>
+            {% if form.title.column %}</div>{% endif %}
         {% if form.title.row %}</div>{% endif %}
+    {% endif %}
+    {% if form.field. %}
+
     {% endif %}
 </form>

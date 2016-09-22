@@ -10,5 +10,7 @@ namespace form\AutoFormBundle\DependencyInjection;
 
 
 class MaterializeSetForm{
-    
+    private $Attr;
+    private $Contents;
+    private $Fields;
 }

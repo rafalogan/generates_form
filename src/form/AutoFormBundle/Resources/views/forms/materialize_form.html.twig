@@ -27,6 +27,12 @@
                         {% endif %}
                         {% if field.label %}<label {% for attr,value in label.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ field.title }}</label>{% endif %}
                     {% if field.attr.type == "radio" or field.attr.type == "checkbox" %}</p>{% endif %}
+                    {% if field.button %}
+                        <button {% for attr,value in field.button.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+                            {% if field.button.icon %}<i {% for attr,value in field.button.icon.attr %} {{ attr }}="{{ value }}" {% endfor %}>{% if field.button.icon.name %}{{ field.button.icon.name }}{% endif %}</i>{% endif %}
+                            {{ field.button.title }}
+                        </button>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

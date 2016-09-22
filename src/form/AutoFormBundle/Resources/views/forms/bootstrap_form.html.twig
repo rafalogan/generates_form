@@ -1,0 +1,16 @@
+<form {% for attr,value in form.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+    {% for group in form.groups %}
+        {% if group.attr %}<div {% for attr,value in group.attr %} {{ attr }}="{{ value }}" {% endfor %}>{% endif %}
+            {% for field in group.fields %}
+                {% if field.label %}<label {% for attr,value in field.label.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ field.label.label }}</label>{% endif %}
+                {% if field.attr.type == 'checkbox'  %}<label>{% endif %}
+                    {% if field.attr.type %}<input {% for attr,value in field.attr %} {{ attr }}="{{ value }}" {% endfor %}>{% endif %}
+                {% if field.attr.type == 'checkbox'  %}</label>{% endif %}
+                {% if field.help %}<p {% for attr,value in field.help.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ field.help.msg }}</p>{% endif %}
+                {% if field.button %}
+                    <button {% for attr,value in button.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ button.title }}</button>
+                {% endif %}
+            {% endfor %}
+        {% if group.attr %}</div>{% endif %}
+    {% endfor %}
+</form>

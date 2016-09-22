@@ -6,7 +6,13 @@
             {% if form.title.column %}</div>{% endif %}
         {% if form.title.row %}</div>{% endif %}
     {% endif %}
-    {% if form.field. %}
-
+    {% if form.fields %}
+        {% for field in form.fields %}
+            {% if field.row %}<div {% for attr,value in field.row %} {{ attr }}="{{ value }}" {% endfor %} >{% endif %}
+            {% if field.column %}<div {% for attr,value in field.column %} {{ attr }}="{{ value }}" {% endfor %} >{% endif %}
+                {% if field.attr.type %}<input {% for attr,value in field.attr %} {{ attr }}="{{ value }}" {% endfor %} >{% endif %}
+            {% if field.column %}</div>{% endif %}
+            {% if field.row %}</div>{% endif %}
+        {% endfor %}
     {% endif %}
 </form>

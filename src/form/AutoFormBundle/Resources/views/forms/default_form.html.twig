@@ -11,6 +11,21 @@
             {% if field.row %}<div {% for attr,value in field.row %} {{ attr }}="{{ value }}" {% endfor %} >{% endif %}
             {% if field.column %}<div {% for attr,value in field.column %} {{ attr }}="{{ value }}" {% endfor %} >{% endif %}
                 {% if field.attr.type %}<input {% for attr,value in field.attr %} {{ attr }}="{{ value }}" {% endfor %} >{% endif %}
+                {% if field.select %}
+                    <select {% for attr,value in field.select.attr %} {{ attr }}="{{ value }}" {% endfor %}>
+                    {% for optgroup in select.groups %}
+                        {% if optgroup.attr %}<optgroup {% for attr,value in optgroup.attr %} {{ attr }}="{{ value }}" {% endfor %}>{% endif %}
+                            {% for option in optgroup.options  %}
+                                <option {% for attr,value in option.attr %} {{ attr }}="{{ value }}" {% endfor %}>{{ option.name }}</option>
+                            {% endfor %}
+                        {% if optgroup.attr %}</optgroup>{% endif %}
+                    {% endfor %}
+                    </select>
+                {% endif %}
+                {% if select.textarea %}
+                    <textarea {% for attr,value in select.textarea.attr %}>
+                    </textarea>
+                {% endif %}
             {% if field.column %}</div>{% endif %}
             {% if field.row %}</div>{% endif %}
         {% endfor %}

@@ -62,6 +62,23 @@ class FormField{
     }
 
     static function setSelect($Select){
+        if (empty($Select))     $Select = "";
+        if (!empty($Select)):
+            if (empty($Select['attr']))         $Select['attr'] = "";
+            if (empty($Select['multiple']))     $Select['multiple'] = "";
+            if (empty($Select['disabled']))     $Select['disabled'] = "";
+            if (!empty($Select['optgroups'])):
+                foreach ($Select['optgroups'] as $Key => $Value):
+                    if (empty($Value['label'])) $Value['label'] = "";
+                    foreach ($Value['options'] as $key => $value):
+                        if ($value['value'])        $value['value'] = "";
+                        if ($value['disabled'])     $value['disabled'] = "";
+                        if ($value['selected'])     $value['selected'] = "";
+                        if ($value['name'])         $value['name'] = "";
+                    endforeach;
+                endforeach;
+            endif;
+        endif;
         return $Select;
     }
 }

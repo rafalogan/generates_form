@@ -13,7 +13,7 @@
                         {% if field.div.attr == "switch" %} {{ field.flag.1 }} </label>{% endif %}
                         {% if field.select %}
                             <select {% for attr,value in select.attr %} {{ attr }}="{{ value }}" {% endfor %}{% if select.multiple %} multiple {% endif %}{% if select.disabled %} disabled {% endif %}>
-                                {% for optgroup in select.optgroup %}
+                                {% for optgroup in select.optgroups %}
                                     {% if optgroup.label %}<optgroup label="{{ optgroup.label }}" {% for attr,value in optgroup.attr%} {{ attr }}="{{ value }}" {% endfor %}>{% endif %}
                                     {% for option in optgroup.options %}
                                         <option {% for attr,value in option.attr %} {{ attr }}="{{ value }}" {% endfor %}{% if option.disabled %} disabled {% endif %}{% if opition.selected %} selected {% endif %}>{{ opition.name }}</option>

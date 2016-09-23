@@ -23,10 +23,11 @@ class FormField{
         if ($this->Type == "materialize"):
             $fields = $this->Fields;
             foreach ($fields as $key => $value ):
-                $value['div']       = self::setInputField($value['div']);
-                $value['icon']      = self::setIcon($value['icon']);
-                $value['attr']      = self::setAttr($value['attr']);
-                $value['select']    = self::setAttr($value['select']);
+                $value['div']           = self::setInputField($value['div']);
+                $value['icon']          = self::setIcon($value['icon']);
+                $value['attr']          = self::setAttr($value['attr']);
+                $value['select']        = self::setAttr($value['select']);
+                $value['textarea']      = self::setTextarea($value['textarea']);
             endforeach;
 
             $this->Fields = $fields;
@@ -80,5 +81,23 @@ class FormField{
             endif;
         endif;
         return $Select;
+    }
+
+    static function setTextarea($Txtarea){
+        if (empty($Txtarea)) $Txtarea = "";
+        if (!empty($Txtarea)):
+            if (empty($Txtarea['class'])) $Txtarea['class'] = "materialize-textarea";
+            if (!empty($Txtarea['class'])) $Txtarea['class'] = "materialize-textarea" . $Txtarea['class'];
+        endif;
+        return $Txtarea;
+    }
+
+    static function setLabel($Label){
+        if (empty($Label)) $Label = "";
+        if (!empty($Label)):
+            if (empty($Label['for'])):
+            endif;
+        endif;
+        return $Label;
     }
 }

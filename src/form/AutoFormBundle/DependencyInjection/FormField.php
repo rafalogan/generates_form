@@ -92,11 +92,10 @@ class FormField{
         return $Txtarea;
     }
 
-    static function setLabel($Label){
+    static function setLabel($Label, $LabelFor = null ){
         if (empty($Label)) $Label = "";
         if (!empty($Label)):
-            if (empty($Label['for'])):
-            endif;
+            if (empty($Label['for'])) $Label['for'] = $Label;
         endif;
         return $Label;
     }

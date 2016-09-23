@@ -17,8 +17,21 @@ class FormField{
         $this->Type     = $Type;
         $this->Fields   = $Fileds;
 
-
     }
 
+    public function setfields(){
+        if ($this->Type == "materialize"):
+            $fields = $this->Fields;
+            foreach ($fields as $key => $value ):
+                self::setInputField($value['div']);
+            endforeach;
 
+            $this->Fields = $fields;
+        endif;
+    }
+
+    static function setInputField($Group){
+        if(empty($Group['class'])) $Group['class'] = "input-field";
+        if(!empty($Group['class'])) $Group['class'] = "input-field " . $Group['class'];
+    }
 }

@@ -10,13 +10,13 @@ namespace form\AutoFormBundle\DependencyInjection;
 
 
 class FormField{
-    private $Type;
     private $Fields;
 
-    public function FieldResult($Fileds = array(), $Type = null){
-        $this->Type     = $Type;
+    public function FieldResult($Fileds){
         $this->Fields   = $Fileds;
 
+         $this->setfields();
+         $this->getFields();
     }
 
     public function setfields(){
@@ -28,10 +28,25 @@ class FormField{
                 $value['attr']          = self::setAttr($value['attr']);
                 $value['select']        = self::setAttr($value['select']);
                 $value['textarea']      = self::setTextarea($value['textarea']);
+
+                $id = "";
+
+                if(!empty($value['attr']['id']))        $id = $value['attr']['id'];
+                if(!empty($value['textarea']['id']))    $id = $value['textarea']['id'];
+
+                $value['label']         = self::setLabel($value['label'], $id );
+
             endforeach;
 
             $this->Fields = $fields;
         endif;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFields(){
+        return $this->Fields;
     }
 
      /** Validação interna dos campos */

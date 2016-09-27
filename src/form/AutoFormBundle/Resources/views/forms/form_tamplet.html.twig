@@ -1,0 +1,13 @@
+<form {% for key,value in form.attr %}{{ key }}="{{ value }}"{% endfor %}>
+    {% if form.contents %}
+        {% for content in form.contents %}
+            {% if content.row %}<div{% for Key,value in content.row %} {{ key }} ="{{ value }}" {% endfor %}>{% endif %}
+                {% for colonne in content.cols %}
+                    {% if colonne.col %}<div{% for key,value in colonne.col %} {{ key }}="{{ value }}" {% endfor %}>{% endif %}
+
+                    {% if colonne.col %}</div>{% endif %}
+                {% endfor %}
+            {% if content.row %}</div>{% endif %}
+        {% endfor %}
+    {% endif %}
+</form>

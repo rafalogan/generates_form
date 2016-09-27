@@ -1,0 +1,9 @@
+<select {% if select.flg.multiple %} multiple {% endif %}{% for key,value in select.attr %} {{ key }}="{{ value }}" {% endfor %}{% if select.flg.disabled %} disabled {% endif %}>
+    {% for optgroup in select.optgroups %}
+        {% if optgroup.label %}<optgroup label="{{ optgroup.label }}">{% endif %}
+            {% for option in optgroup.options %}
+                <option {% if option.flg.disabled %} disabled {% endif %}{% for key,value in option.attr %} {{ key }}="{{ value }}" {% endfor %}{% if option.flg.selected %} selected {% endif %}>{{ option.title | raw }}</option>
+            {% endfor %}
+        {% if optgroup.label %}</optgroup>{% endif %}
+    {% endfor %}
+</select>
